@@ -13,39 +13,17 @@ export interface AuthUser extends User {
 }
 
 export const authService = {
-  // Sign up with email and password
-  async signUp(email: string, password: string, fullName?: string) {
+  // Sign in with Google
+  async signInWithGoogle() {
     try {
-      const { data, error } = await supabase.auth.signUp({
-        email,
-        password,
-        options: {
-          data: {
-            full_name: fullName || email.split('@')[0],
-          },
-        },
+      const { data, error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
       });
 
       if (error) throw error;
       return data;
     } catch (error) {
-      console.error('SignUp failed:', error);
-      throw error;
-    }
-  },
-
-  // Sign in with email and password
-  async signIn(email: string, password: string) {
-    try {
-      const { data, error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
-
-      if (error) throw error;
-      return data;
-    } catch (error) {
-      console.error('SignIn failed:', error);
+      console.error('Google sign in failed:', error);
       throw error;
     }
   },

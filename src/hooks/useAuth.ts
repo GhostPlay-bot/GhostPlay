@@ -37,27 +37,14 @@ export function useAuth() {
     };
   }, []);
 
-  const signIn = async (email: string, password: string) => {
+  const signInWithGoogle = async () => {
     try {
       setLoading(true);
-      const result = await authService.signIn(email, password);
-      return { user: result.user, error: null };
+      const result = await authService.signInWithGoogle();
+      return { data: result, error: null };
     } catch (error) {
       console.error('Sign in error:', error);
-      return { user: null, error };
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const signUp = async (email: string, password: string, fullName?: string) => {
-    try {
-      setLoading(true);
-      const result = await authService.signUp(email, password, fullName);
-      return { user: result.user, error: null };
-    } catch (error) {
-      console.error('Sign up error:', error);
-      return { user: null, error };
+      return { data: null, error };
     } finally {
       setLoading(false);
     }
@@ -96,8 +83,7 @@ export function useAuth() {
     user,
     loading,
     isAuthenticated,
-    signIn,
-    signUp,
+    signInWithGoogle,
     signOut,
     updateProfile,
   };
