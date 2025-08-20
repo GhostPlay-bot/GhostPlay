@@ -1,4 +1,4 @@
-import { Skull } from 'lucide-react'
+import { FaSkull } from 'react-icons/fa'
 import './App.css'
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
         {/* Logo Section */}
         <div className="logo-section">
           <div className="logo">
-            <Skull className="skull-icon" />
+            <FaSkull className="skull-icon" />
             <span className="logo-text">GHOST</span>
           </div>
         </div>
