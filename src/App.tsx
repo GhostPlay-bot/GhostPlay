@@ -14,7 +14,7 @@ function App() {
         </div>
 
         {/* Sign In Title */}
-        <h1 className="signin-title">Sign In</h1>
+        <h1 className="signin-title">Sign Up/In</h1>
 
         {/* Google Sign In Button */}
         <button className="google-signin-btn">
