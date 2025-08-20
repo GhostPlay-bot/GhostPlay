@@ -1,0 +1,149 @@
+@import url('@fontsource/montserrat/400.css');
+@import url('@fontsource/montserrat/600.css');
+@import url('@fontsource/montserrat/700.css');
+@import url('@fontsource/montserrat-alternates/600.css');
+@import url('@fontsource/montserrat-alternates/700.css');
+
+.signin-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.signin-card {
+  background-color: #010409;
+  border-radius: 16px;
+  padding: 48px 40px;
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.logo-section {
+  margin-bottom: 32px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.skull-icon {
+  width: 32px;
+  height: 32px;
+  color: #ffffff;
+}
+
+.logo-text {
+  font-family: 'Montserrat Alternates', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 2px;
+}
+
+.signin-title {
+  font-family: 'Montserrat Alternates', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 40px 0;
+  letter-spacing: 1px;
+}
+
+.google-signin-btn {
+  width: 100%;
+  background-color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  margin-bottom: 40px;
+}
+
+.google-signin-btn:hover {
+  background-color: #f9fafb;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  transform: translateY(-1px);
+}
+
+.google-signin-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.google-icon {
+  flex-shrink: 0;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  color: #9ca3af;
+}
+
+.terms {
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.terms:hover {
+  color: #d1d5db;
+}
+
+.separator {
+  color: #6b7280;
+}
+
+.privacy {
+  color: #4426B9;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.privacy:hover {
+  color: #5b34d4;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .signin-card {
+    padding: 40px 32px;
+    margin: 16px;
+  }
+  
+  .logo-text {
+    font-size: 24px;
+  }
+  
+  .signin-title {
+    font-size: 28px;
+  }
+  
+  .google-signin-btn {
+    padding: 14px 20px;
+    font-size: 15px;
+  }
+}
