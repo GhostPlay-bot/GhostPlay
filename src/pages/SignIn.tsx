@@ -35,7 +35,7 @@ export default function SignIn() {
             <div className="relative z-10 flex-1 flex items-center justify-center max-w-md">
                 <div className="text-center">
                     {/* Custom logo */}
-                    <div className="w-32 h-32 mx-auto mb-6">
+                    <div className="w-50 h-50 mx-auto mb-6">
                         <img 
                             src="/logo.png" 
                             alt="GHOST Logo" 
