@@ -9,10 +9,6 @@ export function useAuth() {
   useEffect(() => {
     const initAuth = async () => {
       try {
-        // 👇 handle OAuth redirect (exchange code for session)
-        const { error: exchangeError } = await supabase.auth.exchangeCodeForSession(window.location.href);
-        if (exchangeError) console.error("Exchange error:", exchangeError.message);
-
         // Get current session
         const { data: { session }, error } = await supabase.auth.getSession();
         if (error) {
