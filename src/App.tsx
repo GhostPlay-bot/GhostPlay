@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import SignIn from "./pages/signIn";
-import Dashboard from "./pages/dashboard";
+import SignIn from "./pages/SignIn";
+import Dashboard from "./pages/Dashboard";
 import { useAuth } from "./hooks/useAuth";
 
 function App() {
