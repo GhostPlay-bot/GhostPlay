@@ -43,7 +43,7 @@ export default function SignIn() {
                         />
                     </div>
                     <h1 className="text-white text-5xl font-bold tracking-wider">
-                        GHOST<span className="text-white-400">Ω</span>
+                        <span className="text-white-400"></span>
                     </h1>
                 </div>
             </div>
