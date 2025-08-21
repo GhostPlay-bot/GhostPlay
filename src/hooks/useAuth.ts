@@ -4,14 +4,33 @@ import type { User } from '@supabase/supabase-js';
 
 export function useAuth() {
     const [user, setUser] = useState<User | null>(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        supabase.auth.getSession().then(({data}) => {
-            setUser(data.session?.user ?? null);
-        });
+        const initializeAuth = async () => {
+            try {
+                const {data, error} = await supabase.auth.getSession();
+                if (error) {
+                    // Clear corrupted session data
+                    await supabase.auth.signOut();
+                    setUser(null);
+                } else {
+                    setUser(data.session?.user ?? null);
+                }
+            } catch (error) {
+                // Handle any unexpected errors by clearing session
+                await supabase.auth.signOut();
+                setUser(null);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        initializeAuth();
 
         const {data: listener} = supabase.auth.onAuthStateChange((_event, session) => {
             setUser(session?.user ?? null);
+            setLoading(false);
         });
 
         return () => {
@@ -19,5 +38,5 @@ export function useAuth() {
         };
     }, []);
 
-    return {user};
+    return {user, loading};
 }
