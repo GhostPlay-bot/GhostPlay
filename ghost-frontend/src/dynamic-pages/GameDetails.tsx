@@ -1,39 +1,38 @@
 import { useParams, Link } from "react-router-dom";
-import { IoMenu } from "react-icons/io5";
-import { useState } from "react";
-
-const dummyGames = [
-    {
-        id: 1,
-        name: "FC Mobile",
-        uploader: "MadMax",
-        uploaderImg: "https://i.pravatar.cc/40?img=2",
-        date: "Jun 23, 2025",
-        image:
-            "https://media.contentapi.ea.com/content/dam/ea/fifa-mobile/season-2022/common/2022-wc-homepage-refresh/fmobile-vandijktraining-16x9.jpg.adapt.crop16x9.652w.jpg",
-        achievements: [
-            "Accounts Linked: (Link would be provided after purchase).",
-            "Web-Shooters: Increases max Web-Shooter ammo capacity by 2.",
-            "Holo-Drone: Increases the damage done by a Holo-Drone.",
-            "Remote Mine: Increases the Remote Mine’s knockout capacity when attached to a fuse box.",
-        ],
-        screenshots: [
-            "https://via.placeholder.com/300x200?text=Screenshot+1",
-            "https://via.placeholder.com/300x200?text=Screenshot+2",
-            "https://via.placeholder.com/300x200?text=Screenshot+3",
-        ],
-    },
-]
+import { useEffect, useRef, useState } from "react";
+import { TfiControlBackward } from "react-icons/tfi";
+import { dummyGames } from "../assets/dummyGames";
 
 export default function GameDetails() {
-    const { id } = useParams();
+    const { id } = useParams<{ id: string }>();
     const game = dummyGames.find((g) => g.id === id);
-    const [scrollPos, setScrollPos] = useState(0);
+    const [menuOpen, setMenuOpen] = useState(false);
+    const dropdownRef = useRef<HTMLDivElement | null>(null);
+
+    const handleLogout = async () => {
+        window.location.href = '/signin';
+    }
+
+    useEffect(() => {
+        function handleClickOutside(event: MouseEvent) {
+            if (
+                dropdownRef.current &&
+                !dropdownRef.current.contains(event.target as Node)
+            ) {
+                setMenuOpen(false);
+            }
+        }
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        }
+    }, [])
 
     if (!game) {
         return (
-            <div className="text-white bg-[#161B22] min-h-screen flex items-center justify-center">
+            <div className="text-white bg-[#161B22] min-h-screen flex flex-col items-center justify-center gap-4">
                 <p>Game not found.</p>
+                <Link to="/dashboard" className="px-4 py-2 bg-blue-600 rounded hover:bg-blue-700">Back to Marketplace</Link>
             </div>
         )
     }
@@ -43,16 +42,18 @@ export default function GameDetails() {
             {/* Navbar */}
             <nav className="bg-[#0E1115] px-6 py-4 flex items-center justify-between">
                 <div className="flex items-center space-x-2">
-                    <button className="p-2 rounded hover:cursor-pointer hover:bg-gray-700">
-                        <IoMenu className="text-white" size={24} />
-                    </button>
+                    <Link to="/dashboard" className="p-2 rounded hover:bg-gray-700">
+                        <button className="p-2 rounded hover:cursor-pointer hover:bg-gray-700">
+                            <TfiControlBackward className="text-white" size={24} />
+                        </button>
+                    </Link>
                 </div>
 
                 <h1 className="text-xl font-bold">GHOST</h1>
 
                 <div className="relative">
                     <button
-                        // onClick={() => setMenuOpen((prev) => !prev)}
+                        onClick={() => setMenuOpen((prev) => !prev)}
                         className="focus:outline-none"
                     >
                         <img
@@ -64,28 +65,28 @@ export default function GameDetails() {
                         />
                     </button>
                     {/* Dropdown */}
-                    {/* {menuOpen && ( */}
-                    <div className="absolute right-0 mt-2 w-40 bg-[#18202D] rounded-md shadow-lg z-20">
-                        <a
-                            href="#"
-                            className="block px-4 py-2 text-sm hover:bg-gray-800"
-                        >
-                            Profile
-                        </a>
-                        <a
-                            href="#"
-                            className="block px-4 py-2 text-sm hover:bg-gray-800"
-                        >
-                            Settings
-                        </a>
-                        <button
-                            // onClick={handleLogout}
-                            className="w-full text-left px-4 py-2 text-sm hover:bg-gray-800"
-                        >
-                            Logout
-                        </button>
-                    </div>
-                    {/* )} */}
+                    {menuOpen && (
+                        <div className="absolute right-0 mt-2 w-40 bg-[#18202D] rounded-md shadow-lg z-20">
+                            <a
+                                href="#"
+                                className="block px-4 py-2 text-sm hover:bg-gray-800"
+                            >
+                                Profile
+                            </a>
+                            <a
+                                href="#"
+                                className="block px-4 py-2 text-sm hover:bg-gray-800"
+                            >
+                                Settings
+                            </a>
+                            <button
+                                onClick={handleLogout}
+                                className="w-full text-left px-4 py-2 text-sm hover:bg-gray-800"
+                            >
+                                Logout
+                            </button>
+                        </div>
+                    )}
                 </div>
             </nav>
 
@@ -128,7 +129,8 @@ export default function GameDetails() {
                                 key={i}
                                 src={shot}
                                 alt={`Screenshot ${i + 1}`}
-                                className="w-60 h-40 object-cover rounded-lg flex-shrink-0"
+                                className="w-72 h-44 object-cover rounded-lg flex-shrink-0 select-none pointer-events-none"
+                                draggable={false}
                             />
                         ))}
                     </div>
