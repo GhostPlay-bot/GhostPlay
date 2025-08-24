@@ -1,4 +1,5 @@
 import { supabase } from "../lib/supabase.ts";
+import { Link } from "react-router-dom";
 
 export default function SignIn() {
     const handleGoogleSignIn = async () => {
@@ -34,6 +35,20 @@ export default function SignIn() {
                         Continue with Google
                     </span>
                 </button>
+
+                <div className="mt-6 text-blue-400 text-sm space-x-2">
+                    <Link to="/guide">
+                        Guide
+                    </Link>
+                    <span className="text-gray-400">•</span>
+                    <a href="#">FAQ</a>
+                    <span className="text-gray-400">•</span>
+                    <a href="#">Privacy & Policy</a>
+                    <span className="text-gray-400">•</span>
+                    <a href="#">News</a>
+                    <span className="text-gray-400">•</span>
+                    <a href="#">Store</a>
+                </div>
             </div>
         </div>
     )
