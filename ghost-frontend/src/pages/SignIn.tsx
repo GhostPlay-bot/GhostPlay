@@ -18,7 +18,7 @@ export default function SignIn() {
                 backgroundImage: "url('/bg-cover.png')",
             }}
         >
-            <div className='bg-black/90 rounded-2xl shadow-xl px-8 py-10 max-w-sm w-full text-center'>
+            <div className='bg-black/90 rounded-2xl shadow-xl m-3 px-8 py-10 max-w-sm w-full text-center'>
                 <h1 className="text-2xl font-bold mb-6">Sign In</h1>
 
                 <button
