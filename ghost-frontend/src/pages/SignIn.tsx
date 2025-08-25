@@ -41,13 +41,21 @@ export default function SignIn() {
                         Guide
                     </Link>
                     <span className="text-gray-400">•</span>
-                    <a href="#">FAQ</a>
+                    <Link to="/faq">
+                        FAQ
+                    </Link>
                     <span className="text-gray-400">•</span>
-                    <a href="#">Privacy & Policy</a>
+                    <Link to="/privacy-policy">
+                        Privacy & Policy
+                    </Link>
                     <span className="text-gray-400">•</span>
-                    <a href="#">News</a>
+                    <Link to="/news">
+                        News
+                    </Link>
                     <span className="text-gray-400">•</span>
-                    <a href="#">Store</a>
+                    <Link to="/store">
+                        Store
+                    </Link>
                 </div>
             </div>
         </div>
